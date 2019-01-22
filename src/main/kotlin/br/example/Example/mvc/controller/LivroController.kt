@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod
 class LivroController @Autowired
 constructor(private val livroRepository: LivroRepository) {
 
+    @RequestMapping(value = ["/"], method = arrayOf(RequestMethod.GET))
+    fun home(): String {
+        return "Spring boot is working!"
+    }
+
     @RequestMapping(value = ["/{autor}"], method = arrayOf(RequestMethod.GET))
     fun listaLivros(@PathVariable("autor") autor: String, model: Model): String {
         val listaLivros = livroRepository.findByAutor(autor)
